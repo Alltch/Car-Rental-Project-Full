@@ -19,7 +19,9 @@ Luma AutoRent - {{ car.get_name }}
         </div>
         <div id="car_imgs_slider">
             {% for image in images %}
-            <div class="car_img_con"><img style="border-radius: 10px !important;" class="car_img_con_data" src="{{ image.image.url }}" alt="car: {{ car.get_name }}"></div>
+            <div class="car_img_con">
+                <img class="car_img_con_data" src="{{ image.image.url }}" alt="car: {{ car.get_name }}">
+            </div>
             {% endfor %}
         </div>
     </div>
@@ -28,10 +30,91 @@ Luma AutoRent - {{ car.get_name }}
             <h2>Год выпуска: <span>{{ car.year }}</span></h2>
             <h2>Модель: <span>{{ car.get_name }}</span></h2>
             <h2>Привод: <span>{{ car.drive_type }}</span></h2>
-            <h2>Обьем мотора: <span>{{ car.get_full_volume }}</span></h2>
+            <h2>Объем мотора: <span>{{ car.get_full_volume }}</span></h2>
             <h2>Статус: <span>{{ car.get_status }}</span></h2>
         </div>
+    
+        <form method="POST" class="form-container">
+            <style>
+                .form-container {
+                    background-color: #1a1a1a;
+                    padding: 25px;
+                    border-radius: 12px;
+                    max-width: 400px;
+                    margin: auto;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                }
+                
+                .form-container label {
+                    color: #e0e0e0;
+                    font-size: 16px;
+                    margin-bottom: 8px;
+                }
+                
+                .form-container input,
+                .form-container select {
+                    width: 100%;
+                    padding: 5px;
+                    margin-bottom: 10px;
+                    border: 1px solid #444;
+                    border-radius: 8px;
+                    background-color: #2c2c2c;
+                    color: #fff;
+                    font-size: 16px;
+                    transition: border 0.3s ease;
+                }
+                
+                .form-container input:focus,
+                .form-container select:focus {
+                    border-color: #ff4d4d;
+                    outline: none;
+                }
+                
+                .form-container button {
+                    background-color: #ff4d4d;
+                    color: #fff;
+                    padding: 14px;
+                    font-size: 16px;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                    width: 100%;
+                }
+                
+                .form-container button:hover {
+                    background-color: #e63946;
+                }
+            </style>
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="full_name">Полное имя:</label>
+                <input type="text" id="full_name" name="full_name" class="form-control" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="phone_number">Номер телефона:</label>
+                <input type="tel" id="phone_number" name="phone_number" class="form-control" placeholder="+7 777 123 4567" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="date_start">Дата начала аренды:</label>
+                <input type="date" id="date_start" name="date_start" class="form-control" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="date_end">Дата окончания аренды:</label>
+                <input type="date" id="date_end" name="date_end" class="form-control" required>
+            </div>
+            
+            <input type="hidden" name="auto" value="{{ car.id }}">
+    
+            <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        </form>
     </div>
+    
+
     <div class="divTable">
         <div class="divTableBody">
             <div class="divTableRow">
@@ -46,28 +129,17 @@ Luma AutoRent - {{ car.get_name }}
             </div>
         </div>
     </div>
-    <div class="car_page_det">
-    </div>
+
     <div class="car_description_page">
-        <div class="page2_about"></div>
-        <div class="p2a_title">
-            О Машине
-        </div>
+        <div class="p2a_title">О Машине</div>
         <div class="p2a_content">
             <div class="p2a_content_text">
-                {% if car.get_full_description %}
-                {{ car.get_full_description }}
-                {% elif car.description %}
-                {{ car.description }}
-                {% endif %}
+                {{ car.get_full_description|default:car.description }}
             </div>
             <div class="p2a_content_text">
-                {% if car.why_this_car %}
                 {{ car.why_this_car }}
-                {% endif %}
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
