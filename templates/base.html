@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
+    {% block style %}{% endblock %}
+</head>
+
+<body>
+    <a href="#header" id="ToUp" data-up-scroll="false">
+        <ion-icon name="arrow-up-outline"></ion-icon>
+    </a> 
+    <div id="caption" data-cap-scroll="false">
+        <div class="cap_block">
+            <a href="{% url 'home' %}" id="cap_logo">
+                <img src="{% static 'img/logo.png' %}" alt="Cars" loading="lazy">
+            </a>
+            <nav>
+                <a href="{% url 'autopark' %}">Автопарк</a>
+                <a href="{% url 'terms' %}">Условия</a>
+                <a href="{% url 'feedbacks' %}">Отзывы</a>
+            </nav>
+        </div>
+        <div class="cap_block">
+            <div class="cap_contacts">
+                <a href="tel:+77001550555">+7-700-155-05-55<ion-icon name="call-outline"></ion-icon></a>
+                <a href="https://www.instagram.com/lumaautorent">Instagram <ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://api.whatsapp.com/send/?phone=77001550555&text&type=phone_number&app_absent=0">Whatsapp <ion-icon name="logo-whatsapp"></ion-icon></a>
+            </div>
+            <div id="menu" data-menu-open="false">
+                <div id="menu_content">
+                    <a href="{% url 'autopark' %}">Автопарк</a>
+                    <a href="{% url 'terms' %}">Условия</a>
+                    <a href="{% url 'feedbacks' %}">Отзывы</a>
+                </div>
+                <div id="menu_icons">
+                    <a href="tel:+77001550555"><ion-icon name="call-outline"></ion-icon></a>
+                    <a href="https://www.instagram.com/lumaautorent"><ion-icon name="logo-instagram"></ion-icon></a>
+                    <a href="https://api.whatsapp.com/send/?phone=77001550555&text&type=phone_number&app_absent=0"><ion-icon name="logo-whatsapp"></ion-icon></a>
+                    <a><ion-icon name="menu-outline" id="menu_open_btn"></ion-icon></a>
+                    <a><ion-icon name="close-outline" id="menu_close_btn"></ion-icon></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    {% block content %}
+    {% endblock %}
+    
+    <footer>
+        <div class="footer_content">
+            <div class="footer_content_block fcb_1">
+                <div class="footer_content_block">
+                    <h2>Информация</h2>
+                    <a href="{% url 'home' %}">Главная</a>
+                    <a href="#">О Автопарке</a>
+                    <a href="#o_company">О Компании</a>
+                </div>
+                <div class="footer_content_block">
+                    <h2>Меню Сайта</h2>
+                    <a href="{% url 'home' %}">Главная</a>
+                    <a href="#">Автопарк</a>
+                    <a href="{% url 'terms' %}">Условия</a>
+                    <a href="{% url 'feedbacks' %}">Отзывы</a>
+                </div>
+            </div>
+            <div class="footer_content_block fcb_2">
+                <h2 class="footer_contacts_title">Контакты
+                    <span>
+                        <a href="https://instagram.com/lumaautorent" class="foo_tg"><ion-icon name="paper-plane-outline"></ion-icon></a>
+                        <a href="https://api.whatsapp.com/send/?phone=77077828088&text&type=phone_number&app_absent=0/" class="foo_wa"><ion-icon name="logo-whatsapp"></ion-icon></a>
+                        <a href="https://t.me/zzzzzrrrddfg" class="foo_ig"><ion-icon name="logo-instagram"></ion-icon></a>
+                    </span>
+                </h2>
+                <a href="tel:+77001550555"><ion-icon name="call-outline"></ion-icon>+7-700-155-05-55</a>
+                <a href="https://2gis.kz/almaty/search/Гагарин%20310к5/geo/70030076483093643/76.901577%2C43.201284"><ion-icon name="business-outline"></ion-icon>Алматы, Гагарин 310к5</a>
+                <a href=""><ion-icon name="at-outline"></ion-icon>Lumaautorent@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{% static 'js/script.js' %}" defer></script>
+</body>
+
+</html>

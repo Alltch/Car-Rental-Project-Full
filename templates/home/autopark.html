@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block title %}
+Luma AutoRent
+{% endblock %}
+
+{% block content %}
+    <div id="autopark_page" class="page">
+        <h1>Доступные в аренду</h1>
+        <div class="autopark_grid">
+            {% for car in cars %}
+            <div class="auto_card">
+                <a href="{% url 'car_detail' car.id %}" class="auto_card_img_wrapper">
+                    {% if car.images.exists %}
+                        {% for image in car.images.all|slice:":2" %}
+                        <img style="border-radius: 10px;" src="{{ image.image.url }}" alt="{{ car.get_name }}">
+                        {% endfor %}
+                    {% else %}
+                    <img style="border-radius: 10px;" id="home_car_images" src="{% static 'img/logo.png' %}" alt="No image available">
+                    {% endif %}
+                </a>
+                <div class="auto_card_content">
+                    <h1>{{ car.get_name }}</h1>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

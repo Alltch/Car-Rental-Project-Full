@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Luma AutoRent - Условия аренды автомобилей
+{% endblock %}
+
+{% block content %}
+<div id="terms_page" class="page">
+    <h1>Условия аренды автомобилей</h1>
+    <div class="terms_content">
+        <div class="terms_left fbb">
+            <div class="terms_block">
+                <h2>Требования к арендатору:</h2>
+                <h3><span>Возраст: </span>От 20 Лет</h3>
+                <h3><span>Стаж Вождения: </span>От 1 года</h3>
+            </div>
+            <div class="terms_block">
+                <h2>Что нужно для аренды:</h2>
+                <ul>
+                    <li>
+                        <h3>Удостоверение личности</h3>
+                    </li>
+                    <li>
+                        <h3>Водительское удостоверение</h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="terms_right fbb terms_block">
+            <div class="details">
+                <div class="summary"><span>Страховой Депозит</span><ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+                <p>Для аренды автомобиля требуется внесение возвратного страхового депозита, размер которого зависит от
+                    выбранного автомобиля, а также стажа вождения и гражданства арендатора. Минимальный размер депозита
+                    30.000 Тенге</p>
+            </div>
+            <div class="details">
+                <div class="summary"><span>Дополнительные Водители</span><ion-icon
+                        name="chevron-forward-outline"></ion-icon></div>
+                <p>Дополнительный водитель должен быть заявлен до момента начала аренды автомобиля, предоставляя
+                    оригиналы паспорта и водительского удостоверения. В стоимость включен 1 водитель. Внесение в
+                    страховку каждого последующего водителя происходит за дополнительную плату.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="{% static 'js/car_script.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+Luma AutoRent - {{ car.get_name }}
+{% endblock %}
+
+{% block content %}
+<div id="car_page" class="page">
+    <div id="car_imgs_wrapper">
+        <div class="car_imgs_btns">
+            <div class="cimg_btn" id="cib_1"><ion-icon name="chevron-back-sharp"></ion-icon></div>
+            <div class="cimg_btn" id="cib_2"><ion-icon name="chevron-forward-sharp"></ion-icon></div>
+        </div>
+        <div id="car_imgs_slider">
+            {% for image in images %}
+            <div class="car_img_con"><img style="border-radius: 10px !important;" class="car_img_con_data" src="{{ image.image.url }}" alt="car: {{ car.get_name }}"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="car_page_info">
+        <div class="cpi_left_block">
+            <h2>Год выпуска: <span>{{ car.year }}</span></h2>
+            <h2>Модель: <span>{{ car.get_name }}</span></h2>
+            <h2>Привод: <span>{{ car.drive_type }}</span></h2>
+            <h2>Обьем мотора: <span>{{ car.get_full_volume }}</span></h2>
+            <h2>Статус: <span>{{ car.get_status }}</span></h2>
+        </div>
+    </div>
+    <div class="divTable">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell">6 часов</div>
+                <div class="divTableCell">12 часов</div>
+                <div class="divTableCell">24 часов</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">{{ car.price_6_hours }}тг</div>
+                <div class="divTableCell">{{ car.price_12_hours }}тг</div>
+                <div class="divTableCell">{{ car.price_24_hours }}тг</div>
+            </div>
+        </div>
+    </div>
+    <div class="car_page_det">
+    </div>
+    <div class="car_description_page">
+        <div class="page2_about"></div>
+        <div class="p2a_title">
+            О Машине
+        </div>
+        <div class="p2a_content">
+            <div class="p2a_content_text">
+                {% if car.get_full_description %}
+                {{ car.get_full_description }}
+                {% elif car.description %}
+                {{ car.description }}
+                {% endif %}
+            </div>
+            <div class="p2a_content_text">
+                {% if car.why_this_car %}
+                {{ car.why_this_car }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
